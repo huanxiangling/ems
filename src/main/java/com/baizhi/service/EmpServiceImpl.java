@@ -22,8 +22,12 @@ public class EmpServiceImpl implements EmpService {
     public Map findPage(Integer page, Integer rows) {
         Map map = new HashMap();
         List<Emp> list = empDao.selectByRowBounds(new Emp(), new RowBounds((page - 1) * rows, rows));
-        map.put("status", 200);
-        map.put("list", list);
+        int count = empDao.selectCount(new Emp());
+        Integer total = count % rows == 0 ? count / rows : count / rows + 1;
+        map.put("rows", list);
+        map.put("records", count);
+        map.put("total", total);
+        map.put("page", page);
         return map;
     }
 

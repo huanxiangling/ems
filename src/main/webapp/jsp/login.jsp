@@ -32,7 +32,7 @@
 <div class="modal-dialog" style="margin-top: 10%;">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title text-center" id="myModalLabel">持明法洲</h4>
+            <h4 class="modal-title text-center" id="myModalLabel">登录</h4>
         </div>
         <form id="loginForm" method="post" onsubmit="return false">
             <div class="modal-body" id="model-body">
