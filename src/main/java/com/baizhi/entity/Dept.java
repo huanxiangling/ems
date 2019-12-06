@@ -9,8 +9,8 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
+public class Dept implements Serializable {
     private String id;
-    private String username;
-    private String password;
+    private String name;
+    private String managerId;
 }
