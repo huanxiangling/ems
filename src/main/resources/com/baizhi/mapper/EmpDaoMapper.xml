@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.EmpDao">
+    <select id="findAllSearch" resultType="Emp">
+        SELECT id,name,age,sex,birth,address,dept FROM t_emp
+        <where>
+            <if test="searchOper=='eq'">
+                ${searchField} = #{searchString}
+            </if>
+            <if test="searchOper=='ne'">
+                ${searchField} != #{searchString}
+            </if>
+            <if test="searchOper=='cn'">
+                ${searchField} like concat('%',#{searchString},'%')
+            </if>
+        </where>
+        limit #{start},#{rows}
+    </select>
+    <select id="findTotalCountsSearch" resultType="Integer">
+        SELECT count(id) FROM t_emp
+        <where>
+            <if test="searchOper=='eq'">
+                ${searchField} = #{searchString}
+            </if>
+            <if test="searchOper=='ne'">
+                ${searchField} != #{searchString}
+            </if>
+            <if test="searchOper=='cn'">
+                ${searchField} like concat('%',#{searchString},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

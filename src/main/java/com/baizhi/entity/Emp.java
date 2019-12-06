@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Emp implements Serializable {
+    @Id
     private String id;
     private String name;
     private String age;
@@ -21,6 +23,5 @@ public class Emp implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birth;
     private String address;
-    private String deptId;
-    private Dept dept;
+    private String dept;
 }

@@ -7,6 +7,8 @@ import java.util.Map;
 public interface EmpService {
     Map findPage(Integer page, Integer rows);
 
+    Map findAllSearch(String searchField, String searchString, String searchOper, Integer page, Integer rows);
+
     Map finOne(Emp emp);
 
     Map save(Emp emp);
