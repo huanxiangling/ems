@@ -1,5 +1,7 @@
 package com.baizhi.service;
 
+import com.baizhi.annotation.AddCache;
+import com.baizhi.annotation.DelCache;
 import com.baizhi.dao.EmpDao;
 import com.baizhi.entity.Emp;
 import org.apache.ibatis.session.RowBounds;
@@ -19,6 +21,7 @@ public class EmpServiceImpl implements EmpService {
     private EmpDao empDao;
 
     @Override
+    @AddCache(value = "分页查询员工")
     public Map findPage(Integer page, Integer rows) {
         Map map = new HashMap();
         List<Emp> list = empDao.selectByRowBounds(new Emp(), new RowBounds((page - 1) * rows, rows));
@@ -52,6 +55,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    @DelCache(value = "删除员工")
     public Map delete(Emp emp) {
         Map map = new HashMap();
         empDao.delete(emp);
@@ -70,6 +74,7 @@ public class EmpServiceImpl implements EmpService {
     }
 
     @Override
+    @AddCache(value = "分页条件查询员工")
     public Map findAllSearch(String searchField, String searchString, String searchOper, Integer page, Integer rows) {
         HashMap map = new HashMap();
         List<Emp> emps = empDao.findAllSearch(searchField, searchString, searchOper, (page - 1) * rows, rows);

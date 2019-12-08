@@ -74,6 +74,7 @@
                     closeAfterDel: true,
                 },
                 {
+                    closeAfterSearch: true,
                     sopt: ['eq', 'ne', 'cn']//配置搜索条件如何
                 },//对搜索时的配置对象
             );

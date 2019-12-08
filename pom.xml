@@ -84,6 +84,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Aop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!--操作redis依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
