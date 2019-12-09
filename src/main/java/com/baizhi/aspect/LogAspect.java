@@ -26,7 +26,7 @@ public class LogAspect {
         MethodSignature signature1 = (MethodSignature) pjp.getSignature();
         AddCache annotation = signature1.getMethod().getAnnotation(AddCache.class);
         String value = annotation.value();
-        System.out.println("语言:" + value);
+        System.out.println("操作:" + value);
         String key = pjp.getTarget().getClass().getName();
         String minKey = "";
         String signature = pjp.getSignature().getName();
@@ -36,15 +36,15 @@ public class LogAspect {
             minKey += arg;
         }
         try {
-            Object proceed = pjp.proceed();
             //获取redisTemple
             RedisTemplate redisTemplate = (RedisTemplate) ApplicationContextUtils.getBean("redisTemplate");
             Boolean hasKey = redisTemplate.opsForHash().hasKey(key, minKey);
             redisTemplate.setKeySerializer(new StringRedisSerializer());
             redisTemplate.setHashKeySerializer(new StringRedisSerializer());
             if (hasKey) {
-                return proceed;
+                return redisTemplate.opsForHash().get(key, minKey);
             } else {
+                Object proceed = pjp.proceed();
                 redisTemplate.opsForHash().put(key, minKey, proceed);
                 return proceed;
             }
